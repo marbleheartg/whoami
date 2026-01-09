@@ -16,7 +16,7 @@ const MINIAPP_METADATA = {
   imageUrl: `https://${process.env.NEXT_PUBLIC_HOST}/images/og/cast.png`,
   aspectRatio: "3:2",
   button: {
-    title: "open",
+    title: "discover",
     action: {
       type: "launch_miniapp",
       url: `https://${process.env.NEXT_PUBLIC_HOST}`,

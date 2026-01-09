@@ -251,7 +251,7 @@ export default function Page() {
       {/* Compose Cast Button */}
       <button
         onClick={() => {
-          sdk.actions.composeCast({ text: "just checked 🔍", embeds: [`https://${process.env.NEXT_PUBLIC_HOST}`] })
+          sdk.actions.composeCast({ text: "analyze your data 🔍", embeds: [`https://${process.env.NEXT_PUBLIC_HOST}`] })
         }}
         className={clsx(
           "group relative mt-6 py-4 px-8 rounded-2xl overflow-hidden",
