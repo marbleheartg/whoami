@@ -20,7 +20,12 @@ export async function proxy(request: NextRequest) {
   if (pathname.startsWith("/api")) {
     if (!protectedRoutes.some(route => pathname.startsWith(route))) return NextResponse.next()
 
-    if (!headers.get("origin")?.endsWith(NEXT_PUBLIC_HOST!)) return new Response("Forbidden", { status: 403 })
+    const origin = headers.get("origin")
+
+    if (origin) {
+      const hostname = new URL(origin).hostname
+      if (hostname !== NEXT_PUBLIC_HOST) return new Response("Forbidden", { status: 403 })
+    }
 
     const authHeader = headers.get("authorization")
     if (!authHeader?.startsWith("Bearer ")) return NextResponse.json({ error: "Unauthorized: No token provided" }, { status: 401 })

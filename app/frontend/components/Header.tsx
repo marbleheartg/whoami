@@ -1,7 +1,7 @@
 import sdk from "@farcaster/miniapp-sdk"
 import clsx from "clsx"
 import NextImage from "next/image"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { NavLink } from "react-router"
 import { base } from "viem/chains"
 import { useConnect, useConnectors, useSwitchChain } from "wagmi"
@@ -9,6 +9,7 @@ import { store } from "../../lib/store"
 
 const Header = () => {
   const { user } = store()
+  const [scrolled, setScrolled] = useState(false)
 
   const { mutate: connect } = useConnect()
   const connectors = useConnectors()
@@ -25,14 +26,38 @@ const Header = () => {
     }, 2000)
   }, [session])
 
+  useEffect(() => {
+    const handleScroll = (e?: Event) => {
+      const main = document.querySelector("main")
+      const mainScroll = main?.scrollTop || 0
+      const windowScroll = window.scrollY || document.documentElement.scrollTop || 0
+      setScrolled(mainScroll > 0 || windowScroll > 0)
+    }
+
+    // Listen to main element scroll
+    const main = document.querySelector("main")
+    main?.addEventListener("scroll", handleScroll, { passive: true })
+    window.addEventListener("scroll", handleScroll, { passive: true })
+
+    return () => {
+      main?.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
   return (
-    <header className={clsx("fixed top-5 inset-x-9", "flex justify-between items-center", "z-30")}>
-      <div className={clsx("w-8 bg-white/10 glass", "border-2 border-(--bg-border) rounded-full")}>
-        <NextImage className="rounded-full" src={"/images/og/icon.png"} alt="logo" width={32} height={32} priority />
-      </div>
+    <header
+      className={clsx(
+        "fixed top-5 z-30",
+        "bg-white/5 glass rounded-full overflow-hidden",
+        "flex items-center",
+        scrolled ? "left-1/2 -translate-x-1/2 w-fit px-2 py-1 gap-5" : "inset-x-5 px-5 py-2 justify-between",
+      )}
+    >
+      <NextImage src={"/images/logo.png"} alt="logo" width={30} height={30} priority />
 
       <NavLink to="/home" onClick={() => sdk.haptics.impactOccurred("medium")}>
-        <div className={clsx("relative flex items-center", "bg-white/10 glass rounded-2xl", "h-8", "pl-2 pr-[35px]")}>
+        <div className={clsx("relative flex items-center", "glass rounded-2xl", "h-8", "pl-2 pr-[35px]")}>
           <div className="text-base text-(--heading) pb-px">{user ? user.displayName : "nickname"}</div>
 
           <div className={clsx("absolute right-0 top-0 aspect-square w-[30px]", "border-2 border-(--bg-border) rounded-full", "cursor-pointer")}>

@@ -7,11 +7,9 @@ import { useEffect } from "react"
 import { BrowserRouter, Route, Routes } from "react-router"
 import Background from "./components/Background"
 import Header from "./components/Header"
-import Menu from "./components/Menu"
-import Home from "./pages/Home"
 import Page from "./pages/Page"
 
-const pngImgSrcs: string[] = []
+const pngImgSrcs: string[] = ["logo"]
 const svgImgSrcs: string[] = []
 
 export default function App() {
@@ -45,18 +43,11 @@ export default function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Page />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="*" element={<Page />} />
           </Routes>
-          <Menu />
           <Background />
         </BrowserRouter>
       </Providers>
-
-      {/* {process.env.NODE_ENV === "development" && (
-        <pre className={clsx("fixed bottom-0 inset-x-0 p-5 pb-15 rounded-t-4xl", "text-xs text-wrap bg-amber-200/50 pointer-events-none z-50")}>
-          <div>{JSON.stringify({ userAddress, isLoading, ua: navigator.userAgent }, null, 2)}</div>
-        </pre>
-      )} */}
     </div>
   )
 }

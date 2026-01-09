@@ -1,13 +1,12 @@
 const CA = "0x"
 
 const MINIAPP = {
-  title: "title",
-  description: "description",
-  tags: ["1", "2", "3", "4", "5"],
-  primaryCategory:
-    "games, social, finance, utility, productivity, health-fitness, news-media, music, shopping, education, developer-tools, entertainment, art-creativity",
-  webhookUrl: "webhookUrl",
-  bgColor: "#ffffff",
+  title: "whoami",
+  description: "discover your digital fingerprint - ip, location, device, browser and more",
+  tags: ["analytics", "privacy", "identity", "tools", "utility"],
+  primaryCategory: "utility",
+  webhookUrl: "https://api.neynar.com/f/app/f152da60-bbd8-4d98-98b7-303904c2e200/event",
+  bgColor: "#0f2239",
   requiredCapabilities: ["actions.ready"],
   requiredChains: ["eip155:8453"],
 }
