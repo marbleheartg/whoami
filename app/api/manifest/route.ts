@@ -5,6 +5,11 @@ const { NEXT_PUBLIC_HOST } = process.env
 
 export async function GET() {
   return NextResponse.json({
+    accountAssociation: {
+      header: "eyJmaWQiOjEwMjEyMTQsInR5cGUiOiJhdXRoIiwia2V5IjoiMHgzMTU3NDk3YjgyZUM5MUEyMzRmMTFFZTQ0NTUzRDJhMzAzZThkNTllIn0",
+      payload: "eyJkb21haW4iOiJ3aG9hbWkubWFyYmxlaGVhcnQueHl6In0",
+      signature: "KHJpW+yw3g2MOKJxyfIPlsS/DDpulq88XiZQJj6tnmJXOn7YATjfoWJfXn80pruaJhLRhkMXt223b8ehy8Jv3Bw=",
+    },
     miniapp: {
       version: "1",
       name: MINIAPP.title,
