@@ -51,16 +51,16 @@ const Header = () => {
         "fixed top-5 z-30",
         "bg-white/5 glass rounded-full overflow-hidden",
         "flex items-center",
-        scrolled ? "left-1/2 -translate-x-1/2 w-fit px-2 py-1 gap-5" : "inset-x-5 px-5 py-2 justify-between",
+        scrolled ? "left-1/2 -translate-x-1/2 w-fit p-1 gap-3" : "inset-x-5 px-3 py-2 justify-between",
       )}
     >
-      <NextImage src={"/images/logo.png"} alt="logo" width={30} height={30} priority />
+      <NextImage className="rounded-full" src={"/images/logo.svg"} alt="logo" width={32} height={32} priority />
 
       <NavLink to="/home" onClick={() => sdk.haptics.impactOccurred("medium")}>
         <div className={clsx("relative flex items-center", "glass rounded-2xl", "h-8", "pl-2 pr-[35px]")}>
-          <div className="text-base text-(--heading) pb-px">{user ? user.displayName : "nickname"}</div>
+          <div className="text-base text-(--heading)">{user ? user.displayName : "nickname"}</div>
 
-          <div className={clsx("absolute right-0 top-0 aspect-square w-[30px]", "border-2 border-(--bg-border) rounded-full", "cursor-pointer")}>
+          <div className={clsx("absolute right-px top-px aspect-square w-[29px]", "border-2 border-(--bg-border) rounded-full", "cursor-pointer")}>
             <NextImage src={user?.pfpUrl || "https://placekittens.com/32/32"} fill alt="pfp" className="rounded-full" priority />
           </div>
         </div>

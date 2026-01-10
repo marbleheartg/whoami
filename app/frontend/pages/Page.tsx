@@ -8,12 +8,9 @@ import clsx from "clsx"
 import HeroCard, { InfoRow, StatBox, StatGrid } from "../components/HeroCard"
 import WalletBalances from "../components/WalletBalances"
 
-// Test FID for development (dwr.eth) - remove in production
-const DEV_FID = 3
-
 export default function Page() {
   const { user, client } = store()
-  const farcasterFid = user?.fid ?? DEV_FID
+  const farcasterFid = user?.fid
   const { data: neynarUser, isLoading: neynarLoading } = useNeynarUser(farcasterFid)
   const {
     server,
@@ -263,9 +260,7 @@ export default function Page() {
         )}
       >
         <div className="absolute inset-0 bg-linear-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-        <span className="text-lg">✨</span>
         <span className="relative">share</span>
-        <span className="text-lg">🔮</span>
       </button>
     </main>
   )
