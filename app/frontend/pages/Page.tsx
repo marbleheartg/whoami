@@ -34,7 +34,7 @@ export default function Page() {
   const fid = neynarUser?.fid || user?.fid
 
   return (
-    <main className={clsx("flex flex-col gap-4", "px-5 pt-25 pb-10", "overflow-y-scroll overflow-x-hidden")}>
+    <main className={clsx("flex flex-col gap-4", "px-5 pt-24 pb-10", "overflow-y-scroll overflow-x-hidden")}>
       {/* IP Address */}
       <HeroCard
         icon="🌐"

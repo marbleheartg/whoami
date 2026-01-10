@@ -34,7 +34,6 @@ const Header = () => {
       setScrolled(mainScroll > 0 || windowScroll > 0)
     }
 
-    // Listen to main element scroll
     const main = document.querySelector("main")
     main?.addEventListener("scroll", handleScroll, { passive: true })
     window.addEventListener("scroll", handleScroll, { passive: true })
@@ -48,16 +47,16 @@ const Header = () => {
   return (
     <header
       className={clsx(
-        "fixed top-5 z-30",
-        "bg-white/5 glass rounded-full overflow-hidden",
+        "fixed top-7 z-30",
         "flex items-center",
-        scrolled ? "left-1/2 -translate-x-1/2 w-fit p-1 gap-3" : "inset-x-5 px-3 py-2 justify-between",
+        "overflow-hidden",
+        scrolled ? "bg-white/5 glass rounded-full left-1/2 -translate-x-1/2 w-fit p-1 gap-3 " : "inset-x-5 justify-between",
       )}
     >
       <NextImage className="rounded-full" src={"/images/logo.svg"} alt="logo" width={32} height={32} priority />
 
       <NavLink to="/home" onClick={() => sdk.haptics.impactOccurred("medium")}>
-        <div className={clsx("relative flex items-center", "glass rounded-2xl", "h-8", "pl-2 pr-[35px]")}>
+        <div className={clsx("relative flex items-center", "glass rounded-2xl", "h-8", "pl-2 pr-[35px]", scrolled ? "" : "bg-white/5")}>
           <div className="text-base text-(--heading)">{user ? user.displayName : "nickname"}</div>
 
           <div className={clsx("absolute right-px top-px aspect-square w-[29px]", "border-2 border-(--bg-border) rounded-full", "cursor-pointer")}>
